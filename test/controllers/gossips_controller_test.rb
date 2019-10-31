@@ -17,7 +17,7 @@ class GossipsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create gossip" do
     assert_difference('Gossip.count') do
-      post gossips_url, params: { gossip: { content: @gossip.content, title: @gossip.title, user_id: @gossip.user_id } }
+      post gossips_url, params: { gossip: { content: @gossip.content, title: @gossip.title, user_id: @gossip.author_id } }
     end
 
     assert_redirected_to gossip_url(Gossip.last)
@@ -34,7 +34,7 @@ class GossipsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update gossip" do
-    patch gossip_url(@gossip), params: { gossip: { content: @gossip.content, title: @gossip.title, user_id: @gossip.user_id } }
+    patch gossip_url(@gossip), params: { gossip: { content: @gossip.content, title: @gossip.title, user_id: @gossip.author_id } }
     assert_redirected_to gossip_url(@gossip)
   end
 

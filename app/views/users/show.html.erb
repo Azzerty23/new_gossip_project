@@ -1,4 +1,6 @@
-<p id="notice"><%= notice %></p>
+<% if flash[:notice] %>
+  <div class="alert alert-success" id="notice"><%= notice %></div>
+<% end %>
 
 <p>
   <strong>Firstname:</strong>
@@ -16,14 +18,11 @@
 </p>
 
 <p>
-  <strong>Password:</strong>
-  <%= @user.password %>
+  <strong>City:</strong>
+  <%= @user.city.name %>
 </p>
 
 <p>
-  <strong>City:</strong>
-  <%= @user.city %>
-</p>
-
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
+</p>

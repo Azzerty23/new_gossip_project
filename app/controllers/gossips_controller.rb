@@ -10,6 +10,7 @@ class GossipsController < ApplicationController
   # GET /gossips/1
   # GET /gossips/1.json
   def show
+    @gossip = set_gossip
   end
 
   # GET /gossips/new
@@ -54,6 +55,7 @@ class GossipsController < ApplicationController
   # DELETE /gossips/1
   # DELETE /gossips/1.json
   def destroy
+    @gossip = set_gossip
     @gossip.destroy
     respond_to do |format|
       format.html { redirect_to gossips_url, notice: 'Gossip was successfully destroyed.' }

@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
 
-  root 'gossips#index'
+  root 'pages#welcome'
 
   resources :users
   resources :gossips do
-    resources :comments, :likes
+    resources :comments
+    resources :likes, except: [:update]
   end
-  resources :city, only: [:index, :show]
+  resources :cities, only: [:index, :show]
+
+  get '/login', to: 'pages#login'
 
 end

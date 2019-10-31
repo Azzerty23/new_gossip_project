@@ -16,7 +16,7 @@ class GossipsTest < ApplicationSystemTestCase
 
     fill_in "Content", with: @gossip.content
     fill_in "Title", with: @gossip.title
-    fill_in "User", with: @gossip.user_id
+    fill_in "User", with: @gossip.author_id
     click_on "Create Gossip"
 
     assert_text "Gossip was successfully created"
@@ -29,7 +29,7 @@ class GossipsTest < ApplicationSystemTestCase
 
     fill_in "Content", with: @gossip.content
     fill_in "Title", with: @gossip.title
-    fill_in "User", with: @gossip.user_id
+    fill_in "User", with: @gossip.author_id
     click_on "Update Gossip"
 
     assert_text "Gossip was successfully updated"
