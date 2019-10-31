@@ -4,13 +4,18 @@
   </div>
 <% end %>
 
-<h1 class="d-flex justify-content-center">Welcome !</h1>
+<% unless current_user %>
+  <h1 class="d-flex justify-content-center">Welcome !</h1>
+  <h2 class="d-flex justify-content-center text-primary">Connecte toi pour participer et partager tes potins en exclusivité avec tes amis !</h2>
+  <br><br>
+  <h4>Derniers potins publics</h4>
+  <br>
 
-<h2>Connecte toi pour participer et partager tes potins en exclusivité avec tes amis !</h2>
-<p> <%= link_to 'New Gossip', new_gossip_path %> </p>
-
-<br><br>
-<h4>Derniers potins publics</h4>
+<% else %>
+    <h3 class="d-flex justify-content-center m-5"> <%= link_to 'Create a new Gossip', new_gossip_path %> </h3>
+    <h4 class="d-flex justify-content-center">Here is the last gossips : <h4>
+  </div>
+<% end %>
 
   <div class="card-columns">
     <% @gossips.visible.each do |gossip| %>

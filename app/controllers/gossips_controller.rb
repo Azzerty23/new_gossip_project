@@ -10,7 +10,6 @@ class GossipsController < ApplicationController
   # GET /gossips/1
   # GET /gossips/1.json
   def show
-    @gossip = set_gossip
   end
 
   # GET /gossips/new
@@ -25,7 +24,8 @@ class GossipsController < ApplicationController
   # POST /gossips
   # POST /gossips.json
   def create
-    @gossip = Gossip.new(gossip_params)
+    puts params.inspect
+    @gossip = Gossip.new(title: params[:title], content: params[:content], author: current_user)
 
     respond_to do |format|
       if @gossip.save
@@ -70,7 +70,7 @@ class GossipsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def gossip_params
-      params.require(:gossip).permit(:title, :content, :user_id)
-    end
+    # def gossip_params
+    #   params.require(:gossip).permit(:title, :content)
+    # end
 end

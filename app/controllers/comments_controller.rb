@@ -4,6 +4,7 @@ class CommentsController < ApplicationController
   # GET /comments
   # GET /comments.json
   def index
+    @gossip = Gossip.find(params[:gossip_id])
     @comments = Comment.all
   end
 
@@ -14,6 +15,7 @@ class CommentsController < ApplicationController
 
   # GET /comments/new
   def new
+    @gossip = Gossip.find(params[:gossip_id])
     @comment = Comment.new
   end
 
@@ -24,7 +26,7 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    @comment = Comment.new(comment_params)
+    @comment = Comment.new(commenter: current_user, gossip: @gossip, content: params[:content])
 
     respond_to do |format|
       if @comment.save
@@ -65,10 +67,5 @@ class CommentsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_comment
       @comment = Comment.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def comment_params
-      params.require(:comment).permit(:user_id, :gossip_id)
     end
 end

@@ -1,5 +1,3 @@
-<p id="notice"> <%= notice %></p>
-
 <p>
   <strong>Title:</strong>
   <%= @gossip.title %>
@@ -12,8 +10,19 @@
 
 <p>
   <strong>User:</strong>
-  <%= @gossip.author %>
+  <%= @gossip.author.firstname %> <%= @gossip.author.lastname %>
 </p>
 
+<p>
 <%= link_to 'Edit', edit_gossip_path(@gossip) %> |
 <%= link_to 'Back', gossips_path %>
+</p>
+
+<h3> Commentaires : </h3>
+<p> <%= link_to 'New comment', new_gossip_comment_path(@gossip) %> </p>
+
+<ul>
+<% @gossip.comments.each do |comment| %>
+<li> <strong> <%= comment.commenter.firstname %> <%= comment.commenter.firstname %> </strong> <%= comment.content %> </li>
+<%end%>
+</ul>

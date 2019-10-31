@@ -1,33 +1,16 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Users</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Firstname</th>
-      <th>Lastname</th>
-      <th>Email</th>
-      <th>City</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+  <div class="card-columns">
     <% @users.each do |user| %>
-      <tr>
-        <td><%= user.firstname %></td>
-        <td><%= user.lastname %></td>
-        <td><%= user.email %></td>
-        <td><%= user.city.name %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div class="card border-light m-3">
+        <div class="card-header"><%= link_to(user) do %> <%= user.firstname %> <%= user.lastname %> <% end %> - <%= user.email %> 
+        </div>
+        <div class="card-body text-dark">
+          <h5 class="card-title"><%= user.city.name %></h5>
+          <% if user.gossips.count > 0 %>
+          <p class="card-text font-weight-light font-italic"> <strong> Last gossip : </strong> <%= user.gossips.last.content %> <small> <%= user.gossips.last.created_at.strftime('%d/%m/%Y %H:%M:%S') %> </small> </p>
+          <% end %>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New User', new_user_path %>
+</div>

@@ -18,8 +18,8 @@ class SessionsController < ApplicationController
   end
   def destroy
     session.delete(:user_id)
-    flash[:success] = "Sesion déconecté"
-    redirect_to new_session_path
+    flash[:success] = "Session déconnectée"
+    redirect_to login_path
   end
 
 end

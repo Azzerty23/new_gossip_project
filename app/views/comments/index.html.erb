@@ -6,24 +6,22 @@
   <thead>
     <tr>
       <th>User</th>
-      <th>Gossip</th>
-      <th colspan="3"></th>
+      <th>Date</th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
+  <p>
+  <%= @gossip.title %> - <%= @gossip.content %>
+  </p>
+
   <tbody>
-    <% @comments.each do |comment| %>
+    <% @gossip.comments.each do |comment| %>
       <tr>
-        <td><%= comment.user %></td>
-        <td><%= comment.gossip %></td>
-        <td><%= link_to 'Show', comment %></td>
-        <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
-        <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= comment.commenter.firstname %> <%= comment.commenter.lastname %> </td>
+        <td><%= comment.created_at.strftime('%d/%m/%Y %H:%M:%S') %> </td>
+        <td></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Comment', new_comment_path %>

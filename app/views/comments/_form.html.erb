@@ -1,4 +1,11 @@
-<%= form_with(model: comment, local: true) do |form| %>
+<%
+=begin%>
+ <%= form_with url: gossip_comments_path(@gossip), local: true do |form| %> 
+<%
+=end%>
+
+
+<%= form_with(url: gossip_comments_path(params[:gossip_id]), local: true) do |form| %>
   <% if comment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
@@ -12,16 +19,10 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
+    <%= form.label :content %>
+    <%= form.text_field :content %>
   </div>
 
-  <div class="field">
-    <%= form.label :gossip_id %>
-    <%= form.text_field :gossip_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <%= form.submit 'Send', class: 'btn btn-primary' %>
 <% end %>
+

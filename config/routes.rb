@@ -2,7 +2,8 @@ Rails.application.routes.draw do
 
   root 'pages#welcome'
 
-  resources :users
+  resources :users, except: :show
+  get '/users/:id', to: 'users#show', as: 'profile'
   resources :gossips do
     resources :comments
     resources :likes, except: [:update]
@@ -13,5 +14,6 @@ Rails.application.routes.draw do
   get '/login', to: 'pages#login'
   post '/login', to: 'pages#welcome'
   post '/session', to: 'pages#welcome'
+  post '/gossips', to: 'gossip#create'
 
 end
