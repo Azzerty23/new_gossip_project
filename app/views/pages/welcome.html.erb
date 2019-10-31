@@ -1,4 +1,8 @@
-<p id="notice"><%= notice %></p>
+<% if flash[:success] %>
+  <div class="alert alert-success d-flex justify-content-center"> 
+      <%= flash[:success] %>
+  </div>
+<% end %>
 
 <h1 class="d-flex justify-content-center">Welcome !</h1>
 

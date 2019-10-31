@@ -5,8 +5,12 @@ class PagesController < ApplicationController
   end
 
   def login
-    @users = User.all
+  end
 
+  private
+
+  def user_params
+    params.require(:user).permit(:email, :password)
   end
 
 end
